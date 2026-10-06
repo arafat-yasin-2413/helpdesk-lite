@@ -1,6 +1,7 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { Ticket } from './ticket.interface.js';
 import { CreateTicketDto } from './dto/create-ticket.dto.js';
+import { UpdateTicketDto } from './dto/update-ticket.dto.js';
 
 @Injectable()
 export class TicketsService {
@@ -57,6 +58,7 @@ export class TicketsService {
     return ticket;
   }
 
+  // create ticket service
   create(crateTicketDto: CreateTicketDto) {
     const ticket: Ticket = {
       id: this.nextTicketId++,
@@ -70,5 +72,16 @@ export class TicketsService {
     this.tickets.push(ticket);
 
     return ticket;
+  }
+
+  // update tickte service
+  update(id: number, updateTicketDto: UpdateTicketDto) {
+    const ticket = this.findOne(id);
+
+    Object.assign(ticket, updateTicketDto)
+
+    return ticket;
+
+
   }
 }
