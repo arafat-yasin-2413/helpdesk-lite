@@ -2,7 +2,6 @@
 /dist
 /node_modules
 /build
-.env
 
 # TypeScript build cache
 *.tsbuildinfo
